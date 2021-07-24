@@ -1,0 +1,16 @@
+version: '3.5'
+
+services:
+    redis_gym:
+        image: redis:3-alpine
+        networks:
+            - NetworkGym
+
+    volumes:
+        database:
+        esdata:
+
+    networks:
+        NetworkGym:
+            driver: bridge
+            name: NetworkGym
