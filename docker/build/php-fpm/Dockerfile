@@ -1,0 +1,83 @@
+FROM php:7.2-fpm
+
+ENV TZ=America/Sao_Paulo
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+
+
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends \
+    curl \
+    libssl-dev \
+    openssl \
+    nano \
+    # gnupg \
+    cron \
+    bash \
+    libpq-dev \ 
+    libz-dev \
+    libbz2-dev \ 
+    zlib1g-dev \
+    libmcrypt-dev \
+    libcurl4-openssl-dev \
+    libxml2-dev \
+    libxslt-dev \
+    && docker-php-ext-install \
+    json \
+    xml \
+    curl \
+    pcntl \
+    session \
+    phar \
+    iconv \
+    pdo \
+    sockets \
+    zip \
+    bz2 \
+    ftp \
+    mbstring \
+    pdo_mysql \
+    pdo_pgsql \
+    opcache \
+    && pecl install \ 
+    mcrypt-1.0.2 \
+    redis-5.1.1 \
+    mongodb \
+    && docker-php-ext-enable \
+    mcrypt \
+    redis \
+    mongodb
+
+# Copy opcache configration
+COPY ./opcache.ini /usr/local/etc/php/conf.d/opcache.ini
+
+# Install the xdebug
+COPY ./xdebug.ini /tmp
+
+RUN pecl install xdebug-2.6.0 \
+        && docker-php-ext-enable xdebug \
+        && cat /tmp/xdebug.ini | grep -v '^#' >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+
+# Copy xdebug configration
+COPY ./xdebug.ini /usr/local/etc/php/conf.d/xdebug.ini
+
+# composer:
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer --version=1.10.21
+
+# Copy php.ini configration
+COPY ./php.ini /usr/local/etc/php/php.ini
+
+# Clear package lists
+RUN rm -rf /var/lib/apt/lists/*
+
+# Permissions
+RUN groupmod -o -g 1000 www-data && \
+    usermod -o -u 1000 -g www-data www-data
+RUN chown -R www-data:www-data /var/www
+RUN chmod u+rwx,g+rx,o+rx /var/www
+RUN find /var/www -type d -exec chmod u+rwx,g+rx,o+rx {} +
+RUN find /var/www -type f -exec chmod u+rw,g+rw,o+r {} +
+
+
+CMD ["php-fpm"]
+
+EXPOSE 9000 
