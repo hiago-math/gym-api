@@ -20,7 +20,8 @@ class Users extends Migration
             $table->string('cpf')->unique()->nullable(false);
             $table->string('password')->nullable(false);
             $table->string('birthday')->nullable(false);
-            $table->string('phone');
+            $table->string('phone')->nullable(false);;
+            $table->boolean('status')->default(0)->nullable(false);
             $table->unsignedBigInteger('function_id');
             $table->unsignedBigInteger('adrress_id');
 

@@ -1,4 +1,4 @@
-FROM php:7.2-fpm
+FROM php:7.3-fpm
 
 ENV TZ=America/Sao_Paulo
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
@@ -13,9 +13,9 @@ RUN apt-get update \
     # gnupg \
     cron \
     bash \
-    libpq-dev \ 
+    libpq-dev \
     libz-dev \
-    libbz2-dev \ 
+    libbz2-dev \
     zlib1g-dev \
     libmcrypt-dev \
     libcurl4-openssl-dev \
@@ -31,14 +31,13 @@ RUN apt-get update \
     iconv \
     pdo \
     sockets \
-    zip \
     bz2 \
     ftp \
     mbstring \
     pdo_mysql \
     pdo_pgsql \
     opcache \
-    && pecl install \ 
+    && pecl install \
     mcrypt-1.0.2 \
     redis-5.1.1 \
     mongodb \
@@ -53,7 +52,7 @@ COPY ./opcache.ini /usr/local/etc/php/conf.d/opcache.ini
 # Install the xdebug
 COPY ./xdebug.ini /tmp
 
-RUN pecl install xdebug-2.6.0 \
+RUN pecl install xdebug \
         && docker-php-ext-enable xdebug \
         && cat /tmp/xdebug.ini | grep -v '^#' >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 
@@ -80,4 +79,4 @@ RUN find /var/www -type f -exec chmod u+rw,g+rw,o+r {} +
 
 CMD ["php-fpm"]
 
-EXPOSE 9000 
+EXPOSE 9000
