@@ -23,13 +23,13 @@ class Users extends Migration
             $table->string('phone')->nullable(false);;
             $table->boolean('status')->default(0)->nullable(false);
             $table->unsignedBigInteger('function_id');
-            $table->unsignedBigInteger('adrress_id');
+            $table->unsignedBigInteger('address_id');
 
             $table->dateTime('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->dateTime('updated_at')->default(DB::raw('CURRENT_TIMESTAMP'));
 
             $table->foreign('function_id')->references('id')->on('functions');
-            $table->foreign('adrress_id')->references('id')->on('address');
+            $table->foreign('address_id')->references('id')->on('address');
 
             $table->softDeletes();
         });
@@ -43,10 +43,8 @@ class Users extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropForeign([
-                'function_id',
-                'adrress_id'
-            ]);
+            $table->dropForeign(['function_id']);
+            $table->dropForeign(['adrress_id']);
         });
 
         Schema::drop('users');
