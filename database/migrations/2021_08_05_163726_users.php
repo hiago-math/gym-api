@@ -15,7 +15,7 @@ class Users extends Migration
     public function up()
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->string('full_name')->nullable(false);
             $table->string('cpf')->unique()->nullable(false);
             $table->string('password')->nullable(false);
@@ -29,7 +29,7 @@ class Users extends Migration
             $table->dateTime('updated_at')->default(DB::raw('CURRENT_TIMESTAMP'));
 
             $table->foreign('function_id')->references('id')->on('functions');
-            $table->foreign('adrress_id')->references('id')->on('adrress');
+            $table->foreign('adrress_id')->references('id')->on('address');
 
             $table->softDeletes();
         });
