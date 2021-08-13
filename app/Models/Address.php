@@ -7,5 +7,17 @@ use Illuminate\Database\Eloquent\Model;
 
 class Address extends Model
 {
-    use HasFactory;
+    protected $connection = 'mysql';
+
+    protected $table = 'address';
+
+    protected $fillable = [
+        "zip_code",
+        "street",
+        "city",
+        "district",
+        "number",
+        "uf",
+        "complement"
+    ];
 }

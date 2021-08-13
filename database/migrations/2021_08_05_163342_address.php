@@ -20,7 +20,7 @@ class Address extends Migration
             $table->string('city');
             $table->string('district');
             $table->string('number');
-            $table->string('complement');
+            $table->string('complement')->default(null);
             $table->string('uf');
 
             $table->dateTime('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));

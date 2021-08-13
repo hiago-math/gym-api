@@ -7,6 +7,7 @@ namespace App\Http\Controllers;
 use App\Domain\Services\AddressService;
 use App\Http\Requests\AddressRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Response;
 
 class AddressController extends Controller
 {
@@ -24,9 +25,12 @@ class AddressController extends Controller
 
     public function storage(AddressRequest $addressRequest)
     {
-        return [
-            'Message' => 'Sucess',
-            'OBS' => 'Congratualtion'
-        ];
+        $response = $this->addressService->create($addressRequest->toArray());
+
+        return Response::json([
+            'sucess',
+
+            'data' => $response
+        ]);
     }
 }
