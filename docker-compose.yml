@@ -13,7 +13,7 @@ services:
             - ${NGINX_HOST_LOG_PATH}:/var/log/nginx
             - ${NGINX_SITES_PATH}:/etc/nginx/conf.d
         ports:
-            - "${NGINX_HOST_HTTP_PORT}:800"
+            - "${NGINX_HOST_HTTP_PORT}:80"
             - "${NGINX_HOST_HTTPS_PORT}:443"
         links:
             - app
@@ -23,6 +23,8 @@ services:
 
     app:
         container_name: app
+        links:
+            - mysql
         build:
             context: ./docker/build/php-fpm
             dockerfile: Dockerfile
@@ -38,6 +40,7 @@ services:
 
     mysql:
         container_name: mysql
+        command: --init-file /docker-entrypoint-initdb.d/structure.sql
         build:
             context: ./docker/build/mysql
             dockerfile: Dockerfile
@@ -47,10 +50,10 @@ services:
             - database:/var/lib/mysql
             - ./database/initialization/structure.sql:/docker-entrypoint-initdb.d/structure.sql
         environment:
-            - MYSQL_DATABASE=${MYSQL_DATABASE}
-            - MYSQL_USER=${MYSQL_USER}
-            - MYSQL_PASSWORD=${MYSQL_PASSWORD}
-            - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+            - MYSQL_DATABASE:${MYSQL_DATABASE}
+            - MYSQL_USER:${MYSQL_USER}
+            - MYSQL_PASSWORD:${MYSQL_PASSWORD}
+            - MYSQL_ROOT_PASSWORD:${MYSQL_ROOT_PASSWORD}
         networks:
             - GymNetwork
 
