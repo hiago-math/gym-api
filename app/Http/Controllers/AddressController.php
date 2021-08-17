@@ -6,7 +6,8 @@ namespace App\Http\Controllers;
 
 use App\Domain\Services\AddressService;
 use App\Http\Requests\AddressRequest;
-use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Response as ResponseHttp;
 use Illuminate\Support\Facades\Response;
 
 class AddressController extends Controller
@@ -23,13 +24,12 @@ class AddressController extends Controller
         $this->addressService = $addressService;
     }
 
-    public function storage(AddressRequest $addressRequest)
+    public function storage(AddressRequest $addressRequest): JsonResponse
     {
         $response = $this->addressService->create($addressRequest->toArray());
 
         return Response::json([
-            'sucess',
-
+            'sucess' => ResponseHttp::HTTP_OK,
             'data' => $response
         ]);
     }

@@ -15,8 +15,9 @@ class Functions extends Migration
     {
         Schema::create('functions', function (Blueprint $table) {
             $table->id();
-            $table->string('label_func')->nullable(false);
-            $table->string('nivel')->nullable(false);
+            $table->string('label')->nullable(false);
+            $table->string('name')->nullable(false);
+            $table->string('level')->nullable(false);
             $table->dateTime('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->dateTime('updated_at')->default(DB::raw('CURRENT_TIMESTAMP'));
 
