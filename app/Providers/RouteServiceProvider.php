@@ -50,6 +50,10 @@ class RouteServiceProvider extends ServiceProvider
             Route::prefix('address')
                 // ->middleware('address')
                 ->group(base_path('routes/address.php'));
+
+            Route::prefix('function')
+                // ->middleware('role')
+                ->group(base_path('routes/function.php'));
         });
     }
 

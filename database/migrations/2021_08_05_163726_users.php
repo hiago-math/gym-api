@@ -43,8 +43,11 @@ class Users extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
+            $table->dropForeign(['address_id']);
+        });
+
+        Schema::table('users', function (Blueprint $table) {
             $table->dropForeign(['function_id']);
-            $table->dropForeign(['adrress_id']);
         });
 
         Schema::drop('users');
