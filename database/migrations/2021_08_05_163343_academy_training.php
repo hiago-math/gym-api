@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class Address extends Migration
+class AcademyTraining extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,8 @@ class Address extends Migration
      */
     public function up()
     {
-        Schema::create('address', function (Blueprint $table) {
+        Schema::create('academy_training', function (Blueprint $table) {
             $table->id();
-            $table->string('zip_code');
-            $table->string('street');
-            $table->string('city');
-            $table->string('district');
-            $table->string('number');
-            $table->string('complement')->default(null);
-            $table->string('uf');
 
             $table->dateTime('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->dateTime('updated_at')->default(DB::raw('CURRENT_TIMESTAMP'));
