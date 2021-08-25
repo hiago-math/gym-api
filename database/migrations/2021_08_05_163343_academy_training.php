@@ -28,6 +28,6 @@ class AcademyTraining extends Migration
      */
     public function down()
     {
-        Schema::drop('address');
+        Schema::drop('academy_training');
     }
 }

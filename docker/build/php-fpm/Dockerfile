@@ -76,7 +76,6 @@ RUN chmod u+rwx,g+rx,o+rx /var/www
 RUN find /var/www -type d -exec chmod u+rwx,g+rx,o+rx {} +
 RUN find /var/www -type f -exec chmod u+rw,g+rw,o+r {} +
 
-
 CMD ["php-fpm"]
 
 EXPOSE 9000

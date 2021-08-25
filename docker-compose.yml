@@ -34,15 +34,15 @@ services:
             - ${APPLICATION}:/var/www/html
         environment:
             - COMPOSER_MEMORY_LIMIT=-1
-            # - PHP_IDE_CONFIG:"Localhost"
+            - PHP_IDE_CONFIG:serverName=Xdebug
+        depends_on:
+            -   mysql
         networks:
             - GymNetwork
 
     mysql:
         container_name: mysql
-        command:
-            - --init-file /docker-entrypoint-initdb.d/structure.sql
-            - --init-file /docker-entrypoin-initdb.d/run_artisan.php
+        command: --init-file /docker-entrypoint-initdb.d/structure.sql
         build:
             context: ./docker/build/mysql
             dockerfile: Dockerfile
@@ -51,12 +51,11 @@ services:
         volumes:
             - database:/var/lib/mysql
             - ./database/initialization/structure.sql:/docker-entrypoint-initdb.d/structure.sql
-            - ./database/initialization/run_artisan.php:/docker-entrypoint-initdb.d/run_artisan.php
         environment:
-            - MYSQL_DATABASE:${MYSQL_DATABASE}
-            - MYSQL_USER:${MYSQL_USER}
-            - MYSQL_PASSWORD:${MYSQL_PASSWORD}
-            - MYSQL_ROOT_PASSWORD:${MYSQL_ROOT_PASSWORD}
+            - MYSQL_DATABASE=${MYSQL_DATABASE}
+            - MYSQL_USER=${MYSQL_USER}
+            - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+            - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
         networks:
             - GymNetwork
 

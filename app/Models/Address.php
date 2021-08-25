@@ -16,7 +16,6 @@ class Address extends Model
         "city",
         "district",
         "number",
-        "uf",
-        "complement"
+        "uf"
     ];
 }

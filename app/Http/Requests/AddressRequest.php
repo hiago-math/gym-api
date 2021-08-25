@@ -38,6 +38,7 @@ class AddressRequest extends FormRequest
             'district' => 'required',
             'number' => 'required',
             'uf' => 'required',
+            'complement' => 'nullable'
         ];
     }
 
