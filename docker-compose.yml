@@ -34,7 +34,7 @@ services:
             - ${APPLICATION}:/var/www/html
         environment:
             - COMPOSER_MEMORY_LIMIT=-1
-            - PHP_IDE_CONFIG:serverName=Xdebug
+            #- PHP_IDE_CONFIG:serverName=Xdebug
         depends_on:
             -   mysql
         networks:
