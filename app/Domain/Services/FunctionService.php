@@ -23,6 +23,10 @@ class FunctionService extends BaseServices
 
     public function create(array $data = []): ?Model
     {
+       //repository para buscar academia com cnpj
+
+
+
         $data['label'] = StringHelper::toLowerString(data_get($data, 'name', ''));
         return $this->functionRepository->create($data);
     }

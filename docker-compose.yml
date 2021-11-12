@@ -6,7 +6,7 @@ services:
         env_file:
             - .env
         build:
-            context: ./docker/build/nginx
+            context: ./docker/build/nginxvendor/psr/log/src/LoggerInterface.php
             dockerfile: Dockerfile
         volumes:
             - ${APPLICATION}:/var/www/html

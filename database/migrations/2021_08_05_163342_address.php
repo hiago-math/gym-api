@@ -21,7 +21,7 @@ class Address extends Migration
             $table->string('district');
             $table->string('number');
             $table->string('complement')->nullable();
-            $table->string('uf');
+            $table->string('state');
 
             $table->dateTime('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->dateTime('updated_at')->default(DB::raw('CURRENT_TIMESTAMP'));
