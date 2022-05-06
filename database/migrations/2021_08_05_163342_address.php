@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 class Address extends Migration
@@ -14,7 +15,7 @@ class Address extends Migration
     public function up()
     {
         Schema::create('address', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('uid_address');
             $table->string('zip_code');
             $table->string('street');
             $table->string('city');
