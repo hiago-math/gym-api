@@ -15,21 +15,18 @@ class Users extends Migration
     public function up()
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->id();
-            $table->string('full_name')->nullable(false);
-            $table->string('cpf')->unique()->nullable(false);
+            $table->uuid('uid_user')->primary()->index();
+            $table->string('full_name')->nullable(false)->index();
+            $table->string('cpf')->unique()->nullable(false)->index();
             $table->string('password')->nullable(false);
-            $table->string('birthday')->nullable(false);
-            $table->string('phone')->nullable(false);;
+            $table->string('birthday')->nullable(false)->index();
+            $table->string('phone')->nullable(false)->index();
             $table->boolean('status')->default(0)->nullable(false);
-            $table->unsignedBigInteger('function_id');
-            $table->unsignedBigInteger('address_id');
+            $table->foreignUuid('uid_function')->constrained('functions', 'uid_function');
+            $table->foreignUuid('uid_address')->constrained('address', 'uid_address');
 
-            $table->dateTime('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
-            $table->dateTime('updated_at')->default(DB::raw('CURRENT_TIMESTAMP'));
-
-            $table->foreign('function_id')->references('id')->on('functions');
-            $table->foreign('address_id')->references('id')->on('address');
+            $table->dateTime('created_at')->default(DB::raw('CURRENT_TIMESTAMP'))->index();
+            $table->dateTime('updated_at')->default(DB::raw('CURRENT_TIMESTAMP'))->index();
 
             $table->softDeletes();
         });
@@ -42,14 +39,6 @@ class Users extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->dropForeign(['address_id']);
-        });
-
-        Schema::table('users', function (Blueprint $table) {
-            $table->dropForeign(['function_id']);
-        });
-
-        Schema::drop('users');
+        Schema::dropIfExists('users');
     }
 }
