@@ -15,12 +15,12 @@ class Functions extends Migration
     public function up()
     {
         Schema::create('functions', function (Blueprint $table) {
-            $table->uuid('uid_function');
-            $table->string('label')->nullable(false);
-            $table->string('name')->nullable(false);
-            $table->string('level')->nullable(false);
-            $table->dateTime('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
-            $table->dateTime('updated_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->uuid('uid_function')->primary()->index();
+            $table->string('label')->nullable(false)->index();
+            $table->string('name')->nullable(false)->index();
+            $table->string('level')->nullable(false)->index();
+            $table->dateTime('created_at')->default(DB::raw('CURRENT_TIMESTAMP'))->index();
+            $table->dateTime('updated_at')->default(DB::raw('CURRENT_TIMESTAMP'))->index();
         });
     }
 
@@ -31,6 +31,6 @@ class Functions extends Migration
      */
     public function down()
     {
-        Schema::drop('functions');
+        Schema::dropIfExists('functions');
     }
 }

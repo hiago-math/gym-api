@@ -15,14 +15,14 @@ class Address extends Migration
     public function up()
     {
         Schema::create('address', function (Blueprint $table) {
-            $table->uuid('uid_address');
-            $table->string('zip_code');
-            $table->string('street');
-            $table->string('city');
-            $table->string('district');
+            $table->uuid('uid_address')->primary()->index();
+            $table->string('zip_code')->index();
+            $table->string('street')->index();
+            $table->string('city')->index();
+            $table->string('district')->index();
             $table->string('number');
-            $table->string('complement')->default(null);
-            $table->string('uf');
+            $table->string('complement')->index()->default(null);
+            $table->string('uf')->index();
 
             $table->dateTime('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->dateTime('updated_at')->default(DB::raw('CURRENT_TIMESTAMP'));
@@ -36,6 +36,6 @@ class Address extends Migration
      */
     public function down()
     {
-        Schema::drop('address');
+        Schema::dropIfExists('address');
     }
 }
