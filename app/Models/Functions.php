@@ -1,15 +1,10 @@
 <?php
 
-
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
-
-class Functions extends Model
+class Functions extends BaseModel
 {
-    protected $connection = 'mysql';
-
-    protected $table = 'functions';
+    protected $primaryKey = "uid_function";
 
     protected $fillable = [
         'label',

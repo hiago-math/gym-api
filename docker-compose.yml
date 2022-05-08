@@ -42,7 +42,7 @@ services:
         container_name: mysql
         command: --init-file /docker-entrypoint-initdb.d/structure.sql
         env_file:
-            - .env
+          - .env
         build:
             context: ./docker/build/mysql
             dockerfile: Dockerfile
