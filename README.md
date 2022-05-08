@@ -46,5 +46,59 @@ E Selecione a opção que possuir o WSL no seu texto:
 Pronto, WSL configurado.
 ```
 
-## Instalando Docker e Docker-compose
+## Instalando Docker e Docker-compose (Agora para usúarios de Windows, Linux e MAC )
 
+````
+# Instale o docker CE(17.12+) & docker-compose(1.2+)
+sudo apt-get update
+sudo apt-get install docker
+sudo apt-get install docker-compose
+
+# Valide se foi instalado usansdo os seguintes comandos no terminal:
+docker -v
+e
+docker-compose -v
+
+# Se retornou algo diferente das vesões siga o passo a seguir:
+
+# Copie e cole no seu navegador o site a seguir e Siga as instruções:
+  https://phoenixnap.com/kb/install-docker-compose-on-ubuntu-20-04
+````
+
+## Rodando SH para Iniciar o projeto automáticamente.
+
+````
+# Em seu terminal digite:
+  bash ./init-project.sh
+````
+
+## Iniciando Projeto automáticamente
+
+``` bash
+
+# Adicionar permissões para o docker
+sudo usermod -aG docker ${USER}
+sudo su - $ {USER}
+
+#Adicionando as configurações do site escolhido, digite em seu terminal: 
+cp .env.example .env
+
+# Adicionar permissão de usuário para o contéudo
+sudo chown -R $USER: $USER .
+
+# Rodar o docker-compose
+docker-compose up -d
+
+# Rodar o composer
+docker-compose exec app composer install
+
+# Rodar as migrations
+docker-compose exec app php artisan migrate
+
+#Permissão na pasta de uploads:
+sudo chown -R $USER:$USER ./web/Upload/
+chmod 777 -R web/Upload/
+
+# Acessando
+http://localhost:8005
+```
