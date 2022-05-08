@@ -70,12 +70,15 @@ docker-compose -v
 ````
 # Em seu terminal digite:
   bash ./init-project.sh
+
+# Responda as perguntas
+# Para a chave do composer, visite o site: https://github.com/settings/tokens 
+  gere uma chave e cole em seu terminal quando pedir.
 ````
 
-## Iniciando Projeto automáticamente
+## Iniciando projeto manualmente
 
 ``` bash
-
 # Adicionar permissões para o docker
 sudo usermod -aG docker ${USER}
 sudo su - ${USER}
@@ -87,18 +90,19 @@ cp .env.example .env
 sudo chown -R $USER: $USER .
 
 # Rodar o docker-compose
-docker-compose up -d
+sudo docker-compose up -d
 
 # Rodar o composer
-docker-compose exec app composer install
+sudo docker-compose exec app composer install
+
+# Adiconar key artisan
+sudo docker-compose exec app php artisan key:generate
 
 # Rodar as migrations
-docker-compose exec app php artisan migrate
-
-#Permissão na pasta de uploads:
-sudo chown -R $USER:$USER ./web/Upload/
-chmod 777 -R web/Upload/
-
-# Acessando
-http://localhost:8005
+sudo docker-compose exec app php artisan migrate
 ```
+## Acesso da api
+
+````
+http://localhost:8005
+````
