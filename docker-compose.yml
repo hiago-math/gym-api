@@ -53,10 +53,10 @@ services:
             - database:/var/lib/mysql
             - ./database/initialization/structure.sql:/docker-entrypoint-initdb.d/structure.sql
         environment:
-            - MYSQL_DATABASE:${MYSQL_DATABASE}
-            - MYSQL_USER:${MYSQL_USER}
-            - MYSQL_PASSWORD:${MYSQL_PASSWORD}
-            - MYSQL_ROOT_PASSWORD:${MYSQL_ROOT_PASSWORD}
+            - "MYSQL_DATABASE:${MYSQL_DATABASE}"
+            - "MYSQL_USER:${MYSQL_USER}"
+            - "MYSQL_PASSWORD:${MYSQL_PASSWORD}"
+            - "MYSQL_ROOT_PASSWORD:${MYSQL_ROOT_PASSWORD}"
         networks:
             - GymNetwork
 
