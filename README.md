@@ -78,7 +78,7 @@ docker-compose -v
 
 # Adicionar permissões para o docker
 sudo usermod -aG docker ${USER}
-sudo su - $ {USER}
+sudo su - ${USER}
 
 #Adicionando as configurações do site escolhido, digite em seu terminal: 
 cp .env.example .env
