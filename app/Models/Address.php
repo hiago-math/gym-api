@@ -2,13 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
-
-class Address extends Model
+class Address extends BaseModel
 {
-    protected $connection = 'mysql';
-
-    protected $table = 'address';
+    protected $primaryKey = "uid_address";
 
     protected $fillable = [
         "zip_code",

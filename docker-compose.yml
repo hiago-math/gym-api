@@ -43,11 +43,14 @@ services:
     mysql:
         container_name: mysql
         command: --init-file /docker-entrypoint-initdb.d/structure.sql
+        env_file:
+          - .env
         build:
             context: ./docker/build/mysql
             dockerfile: Dockerfile
         ports:
             - "${MYSQL_PORT}:3306"
+        restart: always
         volumes:
             - database:/var/lib/mysql
             - ./database/initialization/structure.sql:/docker-entrypoint-initdb.d/structure.sql
@@ -56,14 +59,10 @@ services:
             - MYSQL_USER=${MYSQL_USER}
             - MYSQL_PASSWORD=${MYSQL_PASSWORD}
             - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
-        networks:
-            - GymNetwork
-
     redis:
         image: redis:3-alpine
         networks:
             - GymNetwork
-
 volumes:
     database:
     esdata:

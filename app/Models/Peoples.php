@@ -1,22 +1,19 @@
 <?php
 
-declare(strict_types=1);
 
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Notifications\Notifiable;
 
-class User extends BaseModel
+class Peoples extends BaseModel
 {
     use HasFactory, Notifiable;
 
-    protected $primaryKey = "uid_user";
+    protected $primaryKey = "uid_people";
 
     protected $fillable = [
-        'name',
+        'full_name',
         'email',
-        'password',
     ];
-
 }

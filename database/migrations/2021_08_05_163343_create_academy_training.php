@@ -15,16 +15,16 @@ class AcademyTraining extends Migration
     public function up()
     {
         Schema::create('academy_training', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('uid_academy_training');
             $table->string("name");
             $table->string("fantasy_name");
             $table->string("cnpj");
-            $table->unsignedBigInteger("address_id");
+            $table->unsignedBigInteger("uid_address");
 
             $table->dateTime('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->dateTime('updated_at')->default(DB::raw('CURRENT_TIMESTAMP'));
 
-            $table->foreign('address_id')->references('id')->on('address');
+            $table->foreignUuid('uid_address')->constrained('address','uid_address');
 
             $table->softDeletes();
         });
@@ -37,10 +37,6 @@ class AcademyTraining extends Migration
      */
     public function down()
     {
-        Schema::table('academy_training', function (Blueprint $table) {
-            $table->dropForeign(['address_id']);
-        });
-
-        Schema::drop('academy_training');
+        Schema::dropIfExists('academy_training');
     }
 }

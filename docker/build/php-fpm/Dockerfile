@@ -3,6 +3,9 @@ FROM php:7.3-fpm
 ENV TZ=America/Sao_Paulo
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
+RUN apt-get update && \
+    apt-get upgrade -y && \
+    apt-get install -y git
 
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
