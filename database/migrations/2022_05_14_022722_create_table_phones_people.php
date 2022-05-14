@@ -2,10 +2,9 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTableFunctions extends Migration
+class CreateTablePhonesPeople extends Migration
 {
     /**
      * Run the migrations.
@@ -14,11 +13,10 @@ class CreateTableFunctions extends Migration
      */
     public function up()
     {
-        Schema::create('functions', function (Blueprint $table) {
-            $table->uuid('uid_function')->primary()->index();
-            $table->string('label')->index()->nullable(false);
-            $table->string('name')->index()->nullable(false);
-            $table->string('level')->index()->nullable(false);
+        Schema::create('phones_people', function (Blueprint $table) {
+            $table->uuid('uid_phone');
+            $table->string('phone_number')->unique()->index()->nullable(false);
+            $table->foreignUuid('uid_people')->constrained('people', 'uid_people');
 
             $table->dateTime('created_at')->default(DB::raw('CURRENT_TIMESTAMP'))->index();
             $table->dateTime('updated_at')->default(DB::raw('CURRENT_TIMESTAMP'))->index();
@@ -34,6 +32,6 @@ class CreateTableFunctions extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('functions');
+        Schema::dropIfExists('phones_people');
     }
 }
