@@ -2,7 +2,7 @@ version: '3.5'
 
 services:
     nginx_gym:
-        container_name: nginx_gym
+        container_name: gym_nginx
         env_file:
             - .env
         build:
@@ -22,7 +22,7 @@ services:
             - GymNetwork
 
     app:
-        container_name: app
+        container_name: gym_app
         links:
             - mysql
         build:
@@ -41,7 +41,7 @@ services:
             - GymNetwork
 
     mysql:
-        container_name: mysql
+        container_name: gym_mysql
         command: --init-file /docker-entrypoint-initdb.d/structure.sql
         env_file:
           - .env
@@ -62,6 +62,7 @@ services:
         networks:
             - GymNetwork
     redis:
+        container_name: gym_redis
         image: redis:3-alpine
         networks:
             - GymNetwork
