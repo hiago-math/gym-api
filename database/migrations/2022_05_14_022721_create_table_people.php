@@ -5,7 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
-class Users extends Migration
+class CreateTablePeople extends Migration
 {
     /**
      * Run the migrations.
@@ -14,16 +14,16 @@ class Users extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
-            $table->uuid('uid_user')->primary()->index();
-            $table->string('full_name')->nullable(false)->index();
-            $table->string('cpf')->unique()->nullable(false)->index();
+        Schema::create('people', function (Blueprint $table) {
+            $table->uuid('uid_people')->primary()->index();
+            $table->string('full_name')->index()->nullable(false);
+            $table->string('cpf')->unique()->index()->nullable(false);
+            $table->string('email')->unique()->index()->nullable(false);
             $table->string('password')->nullable(false);
-            $table->string('birthday')->nullable(false)->index();
-            $table->string('phone')->nullable(false)->index();
-            $table->boolean('status')->default(0)->nullable(false);
-            $table->foreignUuid('uid_function')->constrained('functions', 'uid_function');
+            $table->string('birthday')->index()->nullable(false);
+
             $table->foreignUuid('uid_address')->constrained('address', 'uid_address');
+            $table->foreignUuid('uid_status')->constrained('status', 'uid_status');
 
             $table->dateTime('created_at')->default(DB::raw('CURRENT_TIMESTAMP'))->index();
             $table->dateTime('updated_at')->default(DB::raw('CURRENT_TIMESTAMP'))->index();
@@ -39,6 +39,6 @@ class Users extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('people');
     }
 }

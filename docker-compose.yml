@@ -34,7 +34,9 @@ services:
             - ${APPLICATION}:/var/www/html
         environment:
             - COMPOSER_MEMORY_LIMIT=-1
-            # - PHP_IDE_CONFIG:"Localhost"
+            #- PHP_IDE_CONFIG:serverName=Xdebug
+        depends_on:
+            -   mysql
         networks:
             - GymNetwork
 
@@ -53,18 +55,16 @@ services:
             - database:/var/lib/mysql
             - ./database/initialization/structure.sql:/docker-entrypoint-initdb.d/structure.sql
         environment:
-            - "MYSQL_DATABASE:${MYSQL_DATABASE}"
-            - "MYSQL_USER:${MYSQL_USER}"
-            - "MYSQL_PASSWORD:${MYSQL_PASSWORD}"
-            - "MYSQL_ROOT_PASSWORD:${MYSQL_ROOT_PASSWORD}"
+            - MYSQL_DATABASE=${MYSQL_DATABASE}
+            - MYSQL_USER=${MYSQL_USER}
+            - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+            - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
         networks:
             - GymNetwork
-
     redis:
         image: redis:3-alpine
         networks:
             - GymNetwork
-
 volumes:
     database:
     esdata:

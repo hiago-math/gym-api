@@ -34,6 +34,7 @@ class FunctionRequest extends FormRequest
         return [
             'name' => 'required',
             'level' => 'required',
+            'cnpj_academy' => 'required'
         ];
     }
 
@@ -47,6 +48,7 @@ class FunctionRequest extends FormRequest
         return [
             'name.required' => "Deve conter o campo Name",
             'level.required' => "Deve conter o campo Level",
+            'cnpj_academy.required' => "Deve conter o cnpj da academia",
         ];
     }
 
