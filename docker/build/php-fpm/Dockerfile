@@ -1,4 +1,4 @@
-FROM php:7.3-fpm
+FROM php:8.1.0-fpm
 
 ENV TZ=America/Sao_Paulo
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
@@ -13,7 +13,6 @@ RUN apt-get update \
     libssl-dev \
     openssl \
     nano \
-    # gnupg \
     cron \
     bash \
     libpq-dev \
@@ -24,30 +23,11 @@ RUN apt-get update \
     libcurl4-openssl-dev \
     libxml2-dev \
     libxslt-dev \
-    && docker-php-ext-install \
-    json \
-    xml \
-    curl \
-    pcntl \
-    session \
-    phar \
-    iconv \
-    pdo \
-    sockets \
-    bz2 \
-    ftp \
-    mbstring \
-    pdo_mysql \
-    pdo_pgsql \
-    opcache \
     && pecl install \
     mcrypt-1.0.2 \
     redis-5.1.1 \
     mongodb \
-    && docker-php-ext-enable \
-    mcrypt \
-    redis \
-    mongodb
+
 
 # Copy opcache configration
 COPY ./opcache.ini /usr/local/etc/php/conf.d/opcache.ini
