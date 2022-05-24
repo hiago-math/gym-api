@@ -29,9 +29,4 @@ class AddressService extends BaseServices
 
         return $this->addressRepository->create($filds);
     }
-
-    public function teste()
-    {
-        dd('teste');
-    }
 }
