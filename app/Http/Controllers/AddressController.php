@@ -12,7 +12,6 @@ use Illuminate\Support\Facades\Response;
 
 class AddressController extends Controller
 {
-
     /**
      * AddressController constructor.
      * @param AddressService $addressService
