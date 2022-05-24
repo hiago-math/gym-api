@@ -1,8 +1,8 @@
 <?php
 
+declare(strict_types=1);
 
 namespace App\Domain\Repositories\Tables;
-
 
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
@@ -34,7 +34,7 @@ class BaseRepository
         return $instance;
     }
 
-    public function createModel():Model
+    public function createModel(): Model
     {
         return new $this->model;
     }

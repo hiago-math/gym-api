@@ -23,8 +23,8 @@ class AddressService extends BaseServices
     public function create(array $data = []): ?Model
     {
         $filds = [];
-        foreach ($data as $keys => $key) {
-            $filds[$keys] = StringHelper::removeSpecialcharactersAndAccent($key);
+        foreach ($data as $key => $value) {
+            $filds[$key] = StringHelper::removeSpecialcharactersAndAccent($value);
         }
 
         return $this->addressRepository->create($filds);
