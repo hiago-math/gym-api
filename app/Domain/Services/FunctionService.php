@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Domain\Services;
 
-
 use App\Domain\Component\Helper\StringHelper;
 use App\Domain\Repositories\Tables\FunctionRepository;
 use Illuminate\Database\Eloquent\Model;
