@@ -16,8 +16,12 @@ use function PhpParser\filesInDir;
 */
 
 Route::get('/', function () {
-   return config('app.name'). ': WELCOME';
-});
+   return view('welcome');
+})->name('welcome');
+
+Route::get('/phpinfo', function () {
+    return view('phpinfo');
+})->name('php_info');
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
