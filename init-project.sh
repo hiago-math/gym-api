@@ -9,7 +9,7 @@ read init
 
 if [ "$init" == "s" ]; then
     echo 'Buildando docker'
-    sudo docker-compose build
+    sudo docker-compose up -d --build
 
     echo 'Restartando containers'
     sudo docker-compose restart
@@ -18,7 +18,7 @@ if [ "$init" == "s" ]; then
     read exist_composer
 
     if [ "$exist_composer" == "n" ]; then
-        echo 'qual sua chave composer? se não souber acesse, e gere uma::'  https://github.com/settings/tokens
+        echo 'qual sua chave composer? se não souber acesse, e gere uma:'  https://github.com/settings/tokens
         read key_composer
         sudo docker-compose exec app composer config --global --auth github-oauth.github.com $key_composer
 
@@ -41,5 +41,5 @@ if [ "$init" == "s" ]; then
         fi
 fi
 
-echo 'Acesse a api em: ' http://localhost:8005
+echo 'Acesse a api em: ' http://api-gym.localhost:8005
 exit;

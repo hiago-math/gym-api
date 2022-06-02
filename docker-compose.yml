@@ -23,6 +23,7 @@ services:
 
     app:
         container_name: gym_app
+        hostname: api-gym.localhost
         links:
             - mysql
         build:
