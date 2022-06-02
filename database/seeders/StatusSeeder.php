@@ -36,11 +36,6 @@ class StatusSeeder extends Seeder
                 'type' => "PENDENTE",
                 'description' => 'Usuario com cadastrado mas ainda não logou.'
             ],
-            [
-                'uid_status' => Str::uuid(),
-                'type' => "PENDENTE",
-                'description' => 'Usuario com cadastrado mas ainda não logou.'
-            ],
         ]);
     }
 }

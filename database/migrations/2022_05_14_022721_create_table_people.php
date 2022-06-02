@@ -20,7 +20,7 @@ class CreateTablePeople extends Migration
             $table->string('cpf')->unique()->index()->nullable(false);
             $table->string('email')->unique()->index()->nullable(false);
             $table->string('password')->nullable(false);
-            $table->string('birthday')->index()->nullable(false);
+            $table->date('birthday')->index()->nullable(false);
 
             $table->foreignUuid('uid_address')->constrained('address', 'uid_address');
             $table->foreignUuid('uid_status')->constrained('status', 'uid_status');
