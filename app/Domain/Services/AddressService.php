@@ -8,7 +8,7 @@ use App\Domain\Component\Helper\StringHelper;
 use App\Domain\Repositories\Tables\AddressRepository;
 use Illuminate\Database\Eloquent\Model;
 
-class AddressService extends BaseServices
+class AddressService
 {
     /**
      * @var AddressRepository $addressRepository
@@ -27,6 +27,6 @@ class AddressService extends BaseServices
             $filds[$key] = StringHelper::removeSpecialcharactersAndAccent($value);
         }
 
-        return $this->addressRepository->create($filds);
+        return $this->addressRepository->firstOrCreate($filds);
     }
 }

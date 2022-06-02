@@ -21,11 +21,13 @@ class CreateTableAddress extends Migration
             $table->string('city')->index()->nullable(false);
             $table->string('district')->index()->nullable(false);
             $table->string('number')->nullable(false);
-            $table->string('complement')->index()->default(null);
+            $table->string('complement')->index()->nullable();
             $table->string('uf')->index()->nullable(false);
 
             $table->dateTime('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->dateTime('updated_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+
+            $table->softDeletes();
         });
     }
 

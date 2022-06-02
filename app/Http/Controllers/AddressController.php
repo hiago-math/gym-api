@@ -8,7 +8,6 @@ use App\Domain\Services\AddressService;
 use App\Exceptions\Address\AddressExceptions;
 use App\Http\Requests\AddressRequest;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 use Illuminate\Http\Response as ResponseHttp;
 use Illuminate\Support\Facades\Response;
 
@@ -25,17 +24,18 @@ class AddressController extends Controller
         $this->addressService = $addressService;
     }
 
-    public function storage(Request $addressRequest): JsonResponse
+    public function storage(AddressRequest $addressRequest): JsonResponse
     {
         try {
-            $response = $this->addressService->create($addressRequest->toArray());
-        } catch(\Exception $exception) {
+            $this->addressService->create($addressRequest->toArray());
+        } catch (\Exception $exception) {
             AddressExceptions::handle($exception->getMessage());
         }
 
         return Response::json([
-            'sucess' => ResponseHttp::HTTP_OK,
-            'data' => $response
+            'Success' => ResponseHttp::HTTP_OK,
+            'Message' => 'Endereço cadastrado com sucesso!',
+            'Response' => $addressRequest->toArray()
         ]);
     }
 }

@@ -34,6 +34,15 @@ class BaseRepository
         return $instance;
     }
 
+    public function firstOrNew(array $attributes = []): Model
+    {
+        $instance = $this->createModel();
+
+        $instance->firstOrNew($attributes);
+
+        return $instance;
+    }
+
     public function createModel(): Model
     {
         return new $this->model;

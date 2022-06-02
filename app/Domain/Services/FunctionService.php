@@ -9,7 +9,7 @@ use App\Domain\Component\Helper\StringHelper;
 use App\Domain\Repositories\Tables\FunctionRepository;
 use Illuminate\Database\Eloquent\Model;
 
-class FunctionService extends BaseServices
+class FunctionService
 {
     /**
      * @var FunctionRepository
