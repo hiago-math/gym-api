@@ -20,7 +20,7 @@ class AddressService extends BaseServices
         $this->addressRepository = $addressRepository;
     }
 
-    public function create(array $data = []): ?Model
+    public function create(array $data): ?Model
     {
         $filds = [];
         foreach ($data as $key => $value) {

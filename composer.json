@@ -20,7 +20,11 @@
     },
     "autoload": {
         "psr-4": {
-            "App\\": "app/"
+            "App\\": "app/",
+            "Api\\": "routes/api/",
+            "Artisan\\": "routes/artisan/",
+            "Channel\\": "routes/channel/",
+            "Console\\": "routes/console/"
         }
     }
 }

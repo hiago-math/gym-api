@@ -26,8 +26,9 @@ RUN apt-get update \
     && pecl install \
     mcrypt-1.0.2 \
     redis-5.1.1 \
-    mongodb \
+    mongodb
 
+RUN docker-php-ext-install pdo_mysql && docker-php-ext-enable pdo_mysql
 
 # Copy opcache configration
 COPY ./opcache.ini /usr/local/etc/php/conf.d/opcache.ini
