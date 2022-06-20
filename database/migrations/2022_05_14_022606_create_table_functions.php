@@ -20,8 +20,8 @@ class CreateTableFunctions extends Migration
             $table->string('name')->index()->nullable(false);
             $table->string('level')->index()->nullable(false);
 
-            $table->dateTime('created_at')->default(DB::raw('CURRENT_TIMESTAMP'))->index();
-            $table->dateTime('updated_at')->default(DB::raw('CURRENT_TIMESTAMP'))->index();
+            $table->dateTime('created_at')->useCurrent()->index();
+            $table->dateTime('updated_at')->useCurrent()->index();
 
             $table->softDeletes();
         });

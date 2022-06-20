@@ -18,8 +18,8 @@ class CreateTablePhonesAcademy extends Migration
             $table->string('phone_number')->unique()->index()->nullable(false);
             $table->foreignUuid('uid_academy_training')->constrained('academy_training', 'uid_academy_training');
 
-            $table->dateTime('created_at')->default(DB::raw('CURRENT_TIMESTAMP'))->index();
-            $table->dateTime('updated_at')->default(DB::raw('CURRENT_TIMESTAMP'))->index();
+            $table->dateTime('created_at')->useCurrent()->index();
+            $table->dateTime('updated_at')->useCurrent()->index();
 
             $table->softDeletes();
         });

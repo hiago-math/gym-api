@@ -18,8 +18,8 @@ class CreateTableStatus extends Migration
             $table->string('type')->index()->nullable(false);
             $table->string('description');
 
-            $table->dateTime('created_at')->default(DB::raw('CURRENT_TIMESTAMP'))->index();
-            $table->dateTime('updated_at')->default(DB::raw('CURRENT_TIMESTAMP'))->index();
+            $table->dateTime('created_at')->useCurrent()->index();
+            $table->dateTime('updated_at')->useCurrent()->index();
 
             $table->softDeletes();
         });

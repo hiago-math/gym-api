@@ -24,8 +24,8 @@ class CreateTableAddress extends Migration
             $table->string('complement')->index()->nullable(true);
             $table->string('uf')->index()->nullable(false);
 
-            $table->dateTime('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
-            $table->dateTime('updated_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->dateTime('created_at')->useCurrent()->index();
+            $table->dateTime('updated_at')->useCurrent()->index();
         });
     }
 

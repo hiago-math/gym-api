@@ -22,8 +22,8 @@ class CreateTableAcademyTraining extends Migration
 
             $table->foreignUuid('uid_address')->constrained('address','uid_address');
 
-            $table->dateTime('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
-            $table->dateTime('updated_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->dateTime('created_at')->useCurrent()->index();
+            $table->dateTime('updated_at')->useCurrent()->index();
 
             $table->softDeletes();
         });
