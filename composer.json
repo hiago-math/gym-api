@@ -26,6 +26,5 @@
             "Channel\\": "routes/channel/",
             "Console\\": "routes/console/"
         }
-    },
-    ,
+    }
 }
