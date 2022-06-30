@@ -5,18 +5,17 @@ declare(strict_types=1);
 namespace App\Imports;
 
 use Maatwebsite\Excel\Concerns\Importable;
-use Maatwebsite\Excel\Concerns\SkipsErrors;
-use Maatwebsite\Excel\Concerns\SkipsFailures;
-use Maatwebsite\Excel\Concerns\SkipsOnError;
-use Maatwebsite\Excel\Concerns\SkipsOnFailure;
 use Maatwebsite\Excel\Concerns\WithBatchInserts;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
+use Maatwebsite\Excel\Concerns\WithValidation;
 
-abstract class BaseImport implements WithHeadingRow, WithBatchInserts, SkipsOnError, SkipsOnFailure
+abstract class BaseImport implements WithHeadingRow, WithBatchInserts
 {
-    private $mapping = 1;
+    protected $mapping = 1;
 
-    use Importable, SkipsErrors, SkipsFailures;
+    protected $errors = [];
+
+    use Importable;
 
     /**
      * Linha que começará a leitura do arquivo
