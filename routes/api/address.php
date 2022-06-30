@@ -5,4 +5,5 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['prefix' => 'address'], function () {
     Route::post('/store', [AddressController::class, 'storage']);
+    Route::post('/teste', [AddressController::class, 'teste']);
 });
