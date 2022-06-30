@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers;
 
 use App\Imports\ExampleImport\ExampleImport;
-use Illuminate\Support\Facades\Request;
+use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 
 class ExampleImportController extends Controller
