@@ -1,1 +1,1 @@
-CREATE SCHEMA gym_api;
+CREATE SCHEMA gym;
