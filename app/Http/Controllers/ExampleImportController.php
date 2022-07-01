@@ -14,16 +14,25 @@ use Maatwebsite\Excel\HeadingRowImport;
 
 class ExampleImportController extends Controller
 {
+    private ExampleImport $exampleImport;
+    private HeadingRowImport $headingRowImport;
+
+    public function __construct(ExampleImport $exampleImport, HeadingRowImport $headingRowImport)
+    {
+        $this->exampleImport = $exampleImport;
+        $this->headingRowImport = $headingRowImport;
+    }
+
     public function __invoke(Request $request)
     {
         try {
             $file = $request->file('file');
-            $addressImport = new ExampleImport;
+            $request->get('type');
 
-            $heads = (new HeadingRowImport())->toCollection($file);
-            $addressImport->customValidationColumns($heads);
+            $heads = $this->headingRowImport->toCollection($file);
+            $this->exampleImport->customValidationColumns($heads);
 
-            Excel::import($addressImport, $file);
+            Excel::import($this->exampleImport, $file);
 
         } catch (ValidationException $exception) {
             return JsonResponse::json([

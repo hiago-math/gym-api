@@ -4,10 +4,11 @@ declare(strict_types=1);
 
 namespace App\Imports;
 
+use Illuminate\Support\Collection;
+use Illuminate\Validation\ValidationException;
 use Maatwebsite\Excel\Concerns\Importable;
 use Maatwebsite\Excel\Concerns\WithBatchInserts;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
-use Maatwebsite\Excel\Concerns\WithValidation;
 
 abstract class BaseImport implements WithHeadingRow, WithBatchInserts
 {
@@ -36,5 +37,24 @@ abstract class BaseImport implements WithHeadingRow, WithBatchInserts
     public function batchSize(): int
     {
         return 100;
+    }
+
+    /**
+     * @param Collection $collection
+     * @throws \Throwable
+     */
+    public function customValidationColumns(Collection $collection): void
+    {
+        $collection->each(function ($collection) {
+            $headers = $collection->first();
+
+            $headers->each(function ($value) {
+                if (!in_array(strtolower($value), $this->columns())) {
+                    $this->errors[] = "Campo '{$value}' não é valido para essa importação";
+                }
+            });
+        });
+
+        throw_if(!empty($this->errors), ValidationException::withMessages($this->errors));
     }
 }

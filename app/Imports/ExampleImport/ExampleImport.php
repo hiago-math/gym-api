@@ -48,23 +48,4 @@ class ExampleImport extends BaseImport implements ToModel
             'complement' => data_get($row, "complemento")
         ]);
     }
-
-    /**
-     * @param Collection $collection
-     * @throws Throwable
-     */
-    public function customValidationColumns(Collection $collection): void
-    {
-        $collection->each(function ($collection) {
-            $headers = $collection->first();
-
-            $headers->each(function ($value) {
-                if (!in_array(strtolower($value), $this->columns())) {
-                    $this->errors[] = "Campo '{$value}' não é valido para essa importação";
-                }
-            });
-        });
-
-       throw_if(!empty($this->errors), ValidationExceptionAlias::withMessages($this->errors));
-    }
 }
