@@ -104,5 +104,5 @@ sudo docker-compose exec app php artisan migrate
 ## Acesso da api
 
 ````
-http://localhost:8005
+http://api-gym.localhost:8005
 ````
