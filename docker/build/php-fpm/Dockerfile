@@ -25,7 +25,7 @@ RUN apt-get update \
     libxslt-dev \
     && pecl install \
     mcrypt-1.0.2 \
-    redis-5.1.1 \
+    redis \
     mongodb
 
 RUN docker-php-ext-install pdo_mysql && docker-php-ext-enable pdo_mysql
@@ -44,7 +44,7 @@ RUN pecl install xdebug \
 COPY ./xdebug.ini /usr/local/etc/php/conf.d/xdebug.ini
 
 # composer:
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer --version=1.10.21
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer --version=1.10.26
 
 # Copy php.ini configration
 COPY ./php.ini /usr/local/etc/php/php.ini
