@@ -19,7 +19,10 @@
         "laravel/laravel": "^8.5",
         "php": "^7.3",
         "fideloper/proxy": "^4.4",
-        "ext-pdo": "*"
+        "ext-pdo": "*",
+        "phpunit/phpunit": "^9.5",
+        "predis/predis": "^2.0"
+
     },
     "autoload": {
         "psr-4": {
@@ -27,7 +30,8 @@
             "Api\\": "routes/api/",
             "Artisan\\": "routes/artisan/",
             "Channel\\": "routes/channel/",
-            "Console\\": "routes/console/"
+            "Console\\": "routes/console/",
+            "Tests\\": "tests/"
         }
     }
 }

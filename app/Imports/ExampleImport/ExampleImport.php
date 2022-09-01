@@ -5,14 +5,17 @@ declare(strict_types=1);
 namespace App\Imports\ExampleImport;
 
 use App\Imports\BaseImport;
+use App\Models\People;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException as ValidationExceptionAlias;
 use Maatwebsite\Excel\Concerns\ToModel;
+use Maatwebsite\Excel\Concerns\WithEvents;
+use Maatwebsite\Excel\Events\AfterSheet;
 use Throwable;
 
-class ExampleImport extends BaseImport implements ToModel
+class ExampleImport extends BaseImport implements ToModel, WithEvents
 {
     /**
      * @return array
@@ -47,5 +50,17 @@ class ExampleImport extends BaseImport implements ToModel
             'uf' => data_get($row, 'uf'),
             'complement' => data_get($row, "complemento")
         ]);
+    }
+
+    /**
+     * @return array
+     */
+    public function registerEvents(): array
+    {
+        return [
+            AfterSheet::class => function(People $people) {
+            dd($people);
+            }
+        ];
     }
 }

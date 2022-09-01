@@ -25,7 +25,7 @@ RUN apt-get update \
     libxslt-dev \
     && pecl install \
     mcrypt-1.0.2 \
-    redis-5.1.1 \
+    redis \
     mongodb
 
 RUN docker-php-ext-install pdo_mysql && docker-php-ext-enable pdo_mysql

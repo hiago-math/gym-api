@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ImportRequest;
 use App\Imports\ExampleImport\ExampleImport;
-use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Response as JsonResponse;
 use Illuminate\Validation\ValidationException;
@@ -23,7 +23,7 @@ class ExampleImportController extends Controller
         $this->headingRowImport = $headingRowImport;
     }
 
-    public function __invoke(Request $request)
+    public function __invoke(ImportRequest $request)
     {
         try {
             $file = $request->file('file');
@@ -34,7 +34,7 @@ class ExampleImportController extends Controller
 
             Excel::import($this->exampleImport, $file);
 
-        } catch (ValidationException $exception) {
+        } catch (ValidationException |\Exception $exception) {
             return JsonResponse::json([
                 'code' => Response::HTTP_BAD_REQUEST,
                 'message' => 'Erro ao importar o arquivo',
