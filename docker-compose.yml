@@ -50,7 +50,7 @@ services:
             context: ./docker/build/mysql
             dockerfile: Dockerfile
         ports:
-            - "${MYSQL_PORT}:3306"
+            - "${MYSQL_PORT}:${MYSQL_PORT}"
         volumes:
             - database:/var/lib/mysql
             - ./database/initialization/structure.sql:/docker-entrypoint-initdb.d/structure.sql
@@ -63,7 +63,12 @@ services:
             - GymNetwork
     redis:
         container_name: gym_redis
-        image: redis:3-alpine
+        env_file:
+          - .env
+        hostname: api-gym.redis
+        image: redis
+        ports:
+          - "${REDIS_PORT}:${REDIS_PORT}"
         networks:
             - GymNetwork
 volumes:
