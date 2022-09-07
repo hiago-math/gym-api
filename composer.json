@@ -15,9 +15,10 @@
     "license": "proprietary",
     "require": {
         "maatwebsite/excel": "^3.1",
+        "phpoffice/phpspreadsheet": "^1.24",
         "laravel/framework": "^8.53",
         "laravel/laravel": "^8.5",
-        "php": "^7.3",
+        "php": "^8.1",
         "fideloper/proxy": "^4.4",
         "ext-pdo": "*",
         "phpunit/phpunit": "^9.5",

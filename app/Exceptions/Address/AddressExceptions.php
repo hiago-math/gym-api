@@ -3,7 +3,6 @@
 
 namespace App\Exceptions\Address;
 
-use App\Domain\Services\BaseServices;
 use App\Exceptions\Config\BaseException;
 use App\Exceptions\Config\BuildExceptions;
 use Symfony\Component\HttpFoundation\Response;

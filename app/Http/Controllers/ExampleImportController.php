@@ -34,7 +34,7 @@ class ExampleImportController extends Controller
 
             Excel::import($this->exampleImport, $file);
 
-        } catch (ValidationException |\Exception $exception) {
+        } catch (ValidationException $exception) {
             return JsonResponse::json([
                 'code' => Response::HTTP_BAD_REQUEST,
                 'message' => 'Erro ao importar o arquivo',
