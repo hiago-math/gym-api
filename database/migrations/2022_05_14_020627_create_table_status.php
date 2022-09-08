@@ -34,6 +34,8 @@ class CreateTableStatus extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('status');
+        Schema::table('status', function (Blueprint $table) {
+            $table->dropIfExists();
+        });
     }
 }

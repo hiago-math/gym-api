@@ -21,6 +21,7 @@ class CreateTableAcademyTraining extends Migration
             $table->string("cnpj")->unique()->index()->nullable(false);
 
             $table->foreignUuid('uid_address')->constrained('address','uid_address');
+            $table->foreignUuid('uid_status')->constrained('status','uid_status');
 
             $table->dateTime('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->dateTime('updated_at')->default(DB::raw('CURRENT_TIMESTAMP'));
@@ -36,6 +37,8 @@ class CreateTableAcademyTraining extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('academy_training');
+        Schema::table('academy_training', function (Blueprint $table) {
+            $table->dropIfExists();
+        });
     }
 }

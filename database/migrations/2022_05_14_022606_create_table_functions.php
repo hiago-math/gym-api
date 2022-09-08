@@ -34,6 +34,8 @@ class CreateTableFunctions extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('functions');
+        Schema::table('functions', function (Blueprint $table) {
+            $table->dropIfExists();
+        });
     }
 }

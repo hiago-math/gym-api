@@ -14,7 +14,7 @@ class CreateTableTypeStatusXStatus extends Migration
      */
     public function up()
     {
-        Schema::create('table_type_status_x_status', function (Blueprint $table) {
+        Schema::create('type_status_x_status', function (Blueprint $table) {
             $table->foreignUuid('uid_type')->constrained('type_status','uid_type');
             $table->foreignUuid('uid_status')->constrained('status','uid_status');
 
@@ -30,6 +30,8 @@ class CreateTableTypeStatusXStatus extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('table_type_status_x_status');
+        Schema::table('type_status_x_status', function (Blueprint $table) {
+            $table->dropIfExists();
+        });
     }
 }

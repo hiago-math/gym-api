@@ -15,11 +15,13 @@ class CreateTableTypeStatus extends Migration
     public function up()
     {
         Schema::create('type_status', function (Blueprint $table) {
-            $table->uuid('uid_status')->primary()->index();
+            $table->uuid('uid_type')->primary()->index();
             $table->string('type')->index()->nullable();
 
             $table->dateTime('created_at')->default(DB::raw('CURRENT_TIMESTAMP'))->index();
             $table->dateTime('updated_at')->default(DB::raw('CURRENT_TIMESTAMP'))->index();
+
+            $table->softDeletes();
         });
     }
 
@@ -30,6 +32,8 @@ class CreateTableTypeStatus extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('type_status');
+        Schema::table('type_status', function (Blueprint $table) {
+            $table->dropIfExists();
+        });
     }
 }
