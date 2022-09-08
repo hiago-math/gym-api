@@ -15,13 +15,16 @@ class CreateTableTypeStatusXStatus extends Migration
     public function up()
     {
         Schema::create('type_status_x_status', function (Blueprint $table) {
-            $table->foreignUuid('uid_type')->constrained('type_status','uid_type');
-            $table->foreignUuid('uid_status')->constrained('status','uid_status');
+            $table->foreignUuid('uid_type')->constrained('type_status', 'uid_type');
+            $table->foreignUuid('uid_status')->constrained('status', 'uid_status');
 
-            $table->dateTime('created_at')->default(DB::raw('CURRENT_TIMESTAMP'))->index();
-            $table->dateTime('updated_at')->default(DB::raw('CURRENT_TIMESTAMP'))->index();
+            $table->dateTime('created_at')->useCurrent()->index();
+            $table->dateTime('updated_at')->useCurrent()->useCurrentOnUpdate()->index();
+
+            $table->softDeletes();
         });
     }
+
 
     /**
      * Reverse the migrations.

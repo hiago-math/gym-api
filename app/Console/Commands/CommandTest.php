@@ -41,8 +41,13 @@ class CommandTest extends Command
      */
     public function handle()
     {
-       dd(TypeStatus::query()
-           ->with('status')
-           ->get()->toArray());
+        TypeStatus::updateOrCreate(
+                [
+                    'type' => Str::lower(Status::class)
+                ],
+                [
+                    'type' => Str::lower(Status::class) . '222'
+                ]
+            );
     }
 }
