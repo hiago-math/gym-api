@@ -5,7 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTableStatus extends Migration
+class CreateTableTypeStatus extends Migration
 {
     /**
      * Run the migrations.
@@ -14,16 +14,12 @@ class CreateTableStatus extends Migration
      */
     public function up()
     {
-        Schema::create('status', function (Blueprint $table) {
+        Schema::create('type_status', function (Blueprint $table) {
             $table->uuid('uid_status')->primary()->index();
-            $table->string('label')->index()->nullable(false);
-            $table->string('name')->index()->nullable(false);
-            $table->string('description');
+            $table->string('type')->index()->nullable();
 
             $table->dateTime('created_at')->default(DB::raw('CURRENT_TIMESTAMP'))->index();
             $table->dateTime('updated_at')->default(DB::raw('CURRENT_TIMESTAMP'))->index();
-
-            $table->softDeletes();
         });
     }
 
@@ -34,6 +30,6 @@ class CreateTableStatus extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('status');
+        Schema::dropIfExists('type_status');
     }
 }
