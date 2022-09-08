@@ -5,7 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTablePhonesPeople extends Migration
+class CreateTableTypeStatus extends Migration
 {
     /**
      * Run the migrations.
@@ -14,11 +14,9 @@ class CreateTablePhonesPeople extends Migration
      */
     public function up()
     {
-        Schema::create('phones_people', function (Blueprint $table) {
-            $table->uuid('uid_phone')->primary()->index();
-            $table->string('phone_number')->unique()->index()->nullable(false);
-
-            $table->foreignUuid('uid_people')->constrained('people', 'uid_people');
+        Schema::create('type_status', function (Blueprint $table) {
+            $table->uuid('uid_type')->primary()->index();
+            $table->string('type')->index()->nullable(false);
 
             $table->dateTime('created_at')->useCurrent()->index();
             $table->dateTime('updated_at')->useCurrent()->useCurrentOnUpdate()->index();
@@ -34,7 +32,7 @@ class CreateTablePhonesPeople extends Migration
      */
     public function down()
     {
-        Schema::table('phones_people', function (Blueprint $table) {
+        Schema::table('type_status', function (Blueprint $table) {
             $table->dropIfExists();
         });
     }

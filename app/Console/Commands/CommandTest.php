@@ -2,7 +2,11 @@
 
 namespace App\Console\Commands;
 
+use App\Models\AcademyTraining;
+use App\Models\Status;
+use App\Models\TypeStatus;
 use Illuminate\Console\Command;
+use Illuminate\Support\Str;
 
 class CommandTest extends Command
 {
@@ -37,6 +41,13 @@ class CommandTest extends Command
      */
     public function handle()
     {
-        dd('teste');
+        TypeStatus::updateOrCreate(
+                [
+                    'type' => Str::lower(Status::class)
+                ],
+                [
+                    'type' => Str::lower(Status::class) . '222'
+                ]
+            );
     }
 }

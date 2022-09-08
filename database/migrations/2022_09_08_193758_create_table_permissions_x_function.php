@@ -2,10 +2,9 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTablePhonesPeople extends Migration
+class CreateTablePermissionsXFunction extends Migration
 {
     /**
      * Run the migrations.
@@ -14,11 +13,9 @@ class CreateTablePhonesPeople extends Migration
      */
     public function up()
     {
-        Schema::create('phones_people', function (Blueprint $table) {
-            $table->uuid('uid_phone')->primary()->index();
-            $table->string('phone_number')->unique()->index()->nullable(false);
-
-            $table->foreignUuid('uid_people')->constrained('people', 'uid_people');
+        Schema::create('permissions_x_function', function (Blueprint $table) {
+            $table->foreignUuid('uid_permission')->constrained('permissions', 'uid_permission');
+            $table->foreignUuid('uid_function')->constrained('functions', 'uid_function');
 
             $table->dateTime('created_at')->useCurrent()->index();
             $table->dateTime('updated_at')->useCurrent()->useCurrentOnUpdate()->index();
@@ -34,8 +31,6 @@ class CreateTablePhonesPeople extends Migration
      */
     public function down()
     {
-        Schema::table('phones_people', function (Blueprint $table) {
-            $table->dropIfExists();
-        });
+        Schema::dropIfExists('permissions_x_function');
     }
 }
