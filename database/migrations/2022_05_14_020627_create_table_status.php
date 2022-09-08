@@ -16,8 +16,8 @@ class CreateTableStatus extends Migration
     {
         Schema::create('status', function (Blueprint $table) {
             $table->uuid('uid_status')->primary()->index();
-            $table->string('label')->index()->nullable(false);
-            $table->string('name')->index()->nullable(false);
+            $table->string('label')->unique()->index()->nullable(false);
+            $table->string('name')->unique()->index()->nullable(false);
             $table->string('description')->nullable();
 
             $table->dateTime('created_at')->useCurrent()->index();
@@ -34,8 +34,6 @@ class CreateTableStatus extends Migration
      */
     public function down()
     {
-        Schema::table('status', function (Blueprint $table) {
-            $table->dropIfExists();
-        });
+        Schema::dropIfExists('status');
     }
 }

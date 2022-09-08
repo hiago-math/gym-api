@@ -33,8 +33,6 @@ class CreateTableTypeStatusXStatus extends Migration
      */
     public function down()
     {
-        Schema::table('type_status_x_status', function (Blueprint $table) {
-            $table->dropIfExists();
-        });
+        Schema::dropIfExists('type_status_x_status');
     }
 }

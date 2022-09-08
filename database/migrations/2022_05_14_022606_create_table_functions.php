@@ -16,8 +16,8 @@ class CreateTableFunctions extends Migration
     {
         Schema::create('functions', function (Blueprint $table) {
             $table->uuid('uid_function')->primary()->index();
-            $table->string('label')->index()->nullable(false);
-            $table->string('name')->index()->nullable(false);
+            $table->string('label')->unique()->index()->nullable(false);
+            $table->string('name')->unique()->index()->nullable(false);
             $table->string('level')->index()->nullable(false);
 
             $table->dateTime('created_at')->useCurrent()->index();
@@ -34,8 +34,6 @@ class CreateTableFunctions extends Migration
      */
     public function down()
     {
-        Schema::table('functions', function (Blueprint $table) {
-            $table->dropIfExists();
-        });
+        Schema::dropIfExists('functions');
     }
 }
