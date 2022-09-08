@@ -37,8 +37,6 @@ class CreateTableAcademyTraining extends Migration
      */
     public function down()
     {
-        Schema::table('academy_training', function (Blueprint $table) {
-            $table->dropIfExists();
-        });
+        Schema::dropIfExists('academy_training');
     }
 }

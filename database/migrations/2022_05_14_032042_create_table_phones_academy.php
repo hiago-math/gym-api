@@ -34,8 +34,6 @@ class CreateTablePhonesAcademy extends Migration
      */
     public function down()
     {
-        Schema::table('phones_academy', function (Blueprint $table) {
-            $table->dropIfExists();
-        });
+        Schema::dropIfExists('phones_academy');
     }
 }

@@ -38,8 +38,6 @@ class CreateTableAddress extends Migration
      */
     public function down()
     {
-        Schema::table('address', function (Blueprint $table) {
-            $table->dropIfExists();
-        });
+        Schema::dropIfExists('address');
     }
 }
