@@ -22,7 +22,8 @@
         "fideloper/proxy": "^4.4",
         "ext-pdo": "*",
         "phpunit/phpunit": "^9.5",
-        "predis/predis": "^2.0"
+        "predis/predis": "^2.0",
+        "timwassenburg/laravel-service-generator": "^1.0"
 
     },
     "autoload": {

@@ -8,7 +8,7 @@ use App\Domain\Component\Helper\StringHelper;
 use App\Domain\Repositories\Tables\AddressRepository;
 use Illuminate\Database\Eloquent\Model;
 
-class AddressService
+class AcademyTrainingService
 {
     /**
      * @var AddressRepository $addressRepository

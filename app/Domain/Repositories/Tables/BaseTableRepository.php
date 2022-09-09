@@ -7,7 +7,7 @@ namespace App\Domain\Repositories\Tables;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
-class BaseRepository
+class BaseTableRepository
 {
     public function all($attributes = ['*']): Collection
     {

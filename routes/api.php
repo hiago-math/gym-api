@@ -2,7 +2,6 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use function PhpParser\filesInDir;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,7 +27,13 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::group(['prefix' => 'api'], function () {
-    require __DIR__ . '/api/address.php';
+    require __DIR__ . '/api/academy.php';
+    require __DIR__ . '/api/equipment.php';
     require __DIR__ . '/api/function.php';
     require __DIR__ . '/api/import.php';
+    require __DIR__ . '/api/login.php';
+    require __DIR__ . '/api/people.php';
+    require __DIR__ . '/api/permission.php';
+    require __DIR__ . '/api/type-workout.php';
+    require __DIR__ . '/api/workout.php';
 });

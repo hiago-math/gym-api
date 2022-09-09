@@ -12,7 +12,7 @@ use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Symfony\Component\HttpFoundation\Response;
 
-class AddressRequest extends FormRequest
+class AcademyTrainingRequest extends FormRequest
 {
     /**
      * Autorização para uso da request
@@ -32,13 +32,9 @@ class AddressRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'zip_code' => 'required',
-            'street' => 'required',
-            'city' => 'required',
-            'district' => 'required',
-            'number' => 'required',
-            'uf' => 'required',
-            'complement' => 'nullable'
+            'name' => 'required',
+            'fantasy_name' => 'required',
+            'cnpj' => 'required'
         ];
     }
 
@@ -50,28 +46,25 @@ class AddressRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'zip_code.required' => "Deve conter o CEP",
-            'street.required' => "Deve conter a Rua",
-            'city.required' => "Deve conter Cidade",
-            'district.required' => "Deve conter Bairro",
-            'number.required' => "Deve conter numero",
-            'uf.required' => "Deve conter UF",
+            'name.required' => "Nome da academia é obrigatório",
+            'fantasy_name.required' => "Nome fantasia da academia é obrigatório",
+            'cnpj.required' => "CNPJ da academia é obrigatório"
         ];
     }
 
     /**
      * Handle a failed validation attempt.
      *
-     * @param  \Illuminate\Contracts\Validation\Validator  $validator
+     * @param \Illuminate\Contracts\Validation\Validator $validator
      * @return void
      *
-     * @throws TransferException
+     * @throws BuildExceptions
      */
     protected function failedValidation(Validator $validator): void
     {
 
         $exception = new BaseException(
-            'AddressFormResquestError',
+            'AcademyTrainingFormResquestError',
             'Encontramos erros nos dados informados.',
             'Verifique se todos os dados foram informados corretamente',
             DefaultException::GENERAL_SUPPORT_MESSAGE,

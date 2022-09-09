@@ -12,10 +12,7 @@ use Illuminate\Support\Facades\Response;
 
 class FunctionController extends Controller
 {
-    /**
-     * @var FunctionService
-     */
-    private $functionService;
+    private FunctionService $functionService;
 
     public function __construct(FunctionService $functionService)
     {
@@ -27,7 +24,8 @@ class FunctionController extends Controller
         $response = $this->functionService->create($request->toArray());
         return Response::json([
             'sucess' => ResponseHttp::HTTP_OK,
-            'data' => $response
+            'message' => 'Função cadastrada com sucesso!',
+            'response' => $response
         ]);
     }
 }

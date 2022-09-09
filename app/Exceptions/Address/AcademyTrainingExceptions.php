@@ -7,7 +7,7 @@ use App\Exceptions\Config\BaseException;
 use App\Exceptions\Config\BuildExceptions;
 use Symfony\Component\HttpFoundation\Response;
 
-class AddressExceptions
+class AcademyTrainingExceptions
 {
     public static function handle($message)
     {
