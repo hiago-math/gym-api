@@ -7,6 +7,7 @@ namespace App\Models;
 class People extends BaseModel
 {
     protected $primaryKey = "uid_people";
+    protected $table = 'people';
 
     protected $fillable = [
         'full_name',
@@ -28,5 +29,10 @@ class People extends BaseModel
     public function phone()
     {
         return $this->hasMany(PhonesPeople::class, 'uid_people');
+    }
+
+    public function user()
+    {
+        return $this->hasOne(Users::class, 'uid_people');
     }
 }

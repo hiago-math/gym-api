@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace App\Models;
 
-use Illuminate\Support\Str;
-
 class AcademyTraining extends BaseModel
 {
     protected $primaryKey = 'uid_academy_training';
@@ -26,5 +24,10 @@ class AcademyTraining extends BaseModel
     {
         return $this->hasOne(Status::class, 'uid_status', 'uid_status');
 
+    }
+
+    public function address()
+    {
+        return $this->hasOne(Address::class,'uid_address');
     }
 }
