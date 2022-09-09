@@ -18,6 +18,7 @@ class CreateTableUsers extends Migration
             $table->uuid('uid_user')->primary()->index();
 
             $table->foreignUuid('uid_people')->constrained('people', 'uid_people');
+            $table->foreignUuid('uid_status')->constrained('status', 'uid_status');
             $table->foreignUuid('uid_function')->constrained('functions', 'uid_function');
 
             $table->string('username')->index()->nullable(false);

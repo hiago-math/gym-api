@@ -15,7 +15,7 @@ class AcademyTraining extends BaseModel
         'cnpj'
     ];
 
-    public function phone()
+    public function phonesAcademy()
     {
         return $this->hasMany(PhonesAcademy::class, 'uid_academy_training');
     }
@@ -29,5 +29,15 @@ class AcademyTraining extends BaseModel
     public function address()
     {
         return $this->hasOne(Address::class,'uid_address');
+    }
+
+    public function workout()
+    {
+        return $this->belongsToMany(Workout::class, 'workout_x_academy',  'uid_academy_training', 'uid_workout');
+    }
+
+    public function users()
+    {
+        return $this->belongsToMany(Users::class, 'user_x_academy_training','uid_academy_training','uid_user');
     }
 }

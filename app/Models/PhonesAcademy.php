@@ -13,7 +13,7 @@ class PhonesAcademy extends BaseModel
         'phone_number'
     ];
 
-    public function academy()
+    public function academyTraining()
     {
         return $this->belongsTo(AcademyTraining::class, 'uid_academy_training');
     }

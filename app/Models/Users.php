@@ -26,4 +26,14 @@ class Users extends BaseModel
         return $this->hasOne(Functions::class, 'uid_function');
     }
 
+    public function gyms()
+    {
+        return $this->belongsToMany(AcademyTraining::class, 'user_x_academy_training','uid_user', 'uid_academy_training');
+    }
+
+    public function status()
+    {
+        return $this->hasOne(Status::class, 'uid_status');
+    }
+
 }

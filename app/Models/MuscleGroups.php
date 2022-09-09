@@ -18,4 +18,8 @@ class MuscleGroups extends BaseModel
         'img'
     ];
 
+    public function muscles()
+    {
+        return $this->hasMany(Muscles::class, 'uid_muscle_group');
+    }
 }

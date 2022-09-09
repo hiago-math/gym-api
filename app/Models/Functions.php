@@ -19,4 +19,9 @@ class Functions extends BaseModel
     {
         return $this->belongsTo(Users::class, 'uid_function');
     }
+
+    public function permissions()
+    {
+        return $this->belongsToMany(Permissions::class, 'permissions_x_function', 'uid_function', 'uid_permission');
+    }
 }

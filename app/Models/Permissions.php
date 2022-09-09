@@ -17,4 +17,9 @@ class Permissions extends BaseModel
         'name',
         'description'
     ];
+
+    public function functions()
+    {
+        return $this->belongsToMany(Functions::class, 'permissions_x_function','uid_permission', 'uid_function');
+    }
 }

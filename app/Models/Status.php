@@ -32,4 +32,10 @@ class Status extends BaseModel
         return $this->belongsToMany(TypeStatus::class, 'type_status_x_status', 'uid_status', 'uid_type')
             ->where('type', '=', get_class(new Equipment()));
     }
+
+    public function typeStatusUser()
+    {
+        return $this->belongsToMany(TypeStatus::class, 'type_status_x_status', 'uid_status', 'uid_type')
+            ->where('type', '=', get_class(new Users()));
+    }
 }

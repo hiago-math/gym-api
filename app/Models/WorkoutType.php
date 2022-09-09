@@ -15,4 +15,9 @@ class WorkoutType extends BaseModel
     protected $fillable = [
         'type'
     ];
+
+    public function workout()
+    {
+        return $this->hasMany(Workout::class, 'uid_workout_type');
+    }
 }

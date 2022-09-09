@@ -16,4 +16,14 @@ class Equipment extends BaseModel
         'name',
         'img'
     ];
+
+    public function status()
+    {
+        return $this->hasOne(Status::class, 'uid_status');
+    }
+
+    public function workout()
+    {
+        return $this->hasOne(Workout::class, 'uid_equipment');
+    }
 }
