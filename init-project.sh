@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 echo 'Iniciando configuracoes do projeto...'
 
+sudo usermod -aG docker ${USER}
+sudo su - ${USER}
+
 echo 'Iniciando projeto com docker... '
 sudo docker-compose up -d
 

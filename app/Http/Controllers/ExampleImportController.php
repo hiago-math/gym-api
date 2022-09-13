@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ImportRequest;
@@ -12,7 +10,7 @@ use Illuminate\Validation\ValidationException;
 use Maatwebsite\Excel\Facades\Excel;
 use Maatwebsite\Excel\HeadingRowImport;
 
-class ExampleImportController extends Controller
+class ExampleImportController extends BaseController
 {
     private ExampleImport $exampleImport;
     private HeadingRowImport $headingRowImport;
@@ -42,9 +40,6 @@ class ExampleImportController extends Controller
             ]);
         }
 
-        return JsonResponse::json([
-            'code' => Response::HTTP_OK,
-            'message' => 'Importação realizada com sucesso'
-        ]);
+        return $this->returnResponse(define('null', null, true), "Arquivo importado com Sucesso");
     }
 }

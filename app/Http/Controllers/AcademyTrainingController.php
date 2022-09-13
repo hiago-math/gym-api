@@ -1,24 +1,20 @@
 <?php
 
-declare(strict_types=1);
-
 namespace App\Http\Controllers;
 
 use App\Domain\Services\AcademyTrainingService;
 use App\Exceptions\Address\AcademyTrainingExceptions;
 use App\Http\Requests\AcademyTrainingRequest;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Response as ResponseHttp;
-use Illuminate\Support\Facades\Response;
 use Illuminate\Validation\ValidationException;
 
-class AcademyTrainingController extends Controller
+class AcademyTrainingController extends BaseController
 {
     /**
      * AddressController constructor.
      * @param AcademyTrainingService $addressService
      */
-    private AddressTrainingService $addressService;
+    private AcademyTrainingService $addressService;
 
     public function __construct(AcademyTrainingService $addressService)
     {
@@ -33,10 +29,6 @@ class AcademyTrainingController extends Controller
             AcademyTrainingExceptions::handle($exception->getMessage());
         }
 
-        return Response::json([
-            'success' => ResponseHttp::HTTP_OK,
-            'message' => 'Academia cadastrada com sucesso!',
-            'response' => $response
-        ]);
+        return $this->returnResponse($response, 'Academia cadastrada com sucesso!');
     }
 }

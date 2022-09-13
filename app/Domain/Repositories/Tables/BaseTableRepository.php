@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 namespace App\Domain\Repositories\Tables;
 
 use Illuminate\Database\Eloquent\Collection;
