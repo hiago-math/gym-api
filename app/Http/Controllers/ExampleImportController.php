@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ImportRequest;
@@ -42,9 +40,6 @@ class ExampleImportController extends Controller
             ]);
         }
 
-        return JsonResponse::json([
-            'code' => Response::HTTP_OK,
-            'message' => 'Importação realizada com sucesso'
-        ]);
+        return $this->returnResponse(null, "Arquivo importado com Sucesso");
     }
 }

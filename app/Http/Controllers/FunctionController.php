@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 namespace App\Http\Controllers;
 
 use App\Domain\Services\FunctionService;
@@ -22,10 +20,6 @@ class FunctionController extends Controller
     public function storage(FunctionRequest $request): JsonResponse
     {
         $response = $this->functionService->create($request->toArray());
-        return Response::json([
-            'sucess' => ResponseHttp::HTTP_OK,
-            'message' => 'Função cadastrada com sucesso!',
-            'response' => $response
-        ]);
+        return $this->returnResponse($response, 'Função cadastrada com sucesso!');
     }
 }

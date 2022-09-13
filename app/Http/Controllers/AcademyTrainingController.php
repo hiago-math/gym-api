@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 namespace App\Http\Controllers;
 
 use App\Domain\Services\AcademyTrainingService;
@@ -18,7 +16,7 @@ class AcademyTrainingController extends Controller
      * AddressController constructor.
      * @param AcademyTrainingService $addressService
      */
-    private AddressTrainingService $addressService;
+    private AcademyTrainingService $addressService;
 
     public function __construct(AcademyTrainingService $addressService)
     {
@@ -33,10 +31,6 @@ class AcademyTrainingController extends Controller
             AcademyTrainingExceptions::handle($exception->getMessage());
         }
 
-        return Response::json([
-            'success' => ResponseHttp::HTTP_OK,
-            'message' => 'Academia cadastrada com sucesso!',
-            'response' => $response
-        ]);
+        return $this->returnResponse($response, 'Academia cadastrada com sucesso!');
     }
 }
