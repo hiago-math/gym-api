@@ -4,8 +4,8 @@ namespace App\Domain\Repositories\Tables;
 
 use App\Models\Address;
 
-class AddressRepository extends BaseRepository
+class AddressRepository extends BaseTableRepository
 {
-    protected $model = Address::class;
+    protected string $model = Address::class;
 
 }

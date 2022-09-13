@@ -2,8 +2,8 @@
 
 namespace App\Domain\Repositories\Tables;
 
+use App\Models\BaseModel as Model;
 use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Database\Eloquent\Model;
 
 class BaseTableRepository
 {
@@ -27,9 +27,7 @@ class BaseTableRepository
     {
         $instance = $this->createModel();
 
-        $instance->firstOrCreate($attributes);
-
-        return $instance;
+        return $instance->firstOrCreate($attributes);
     }
 
     public function firstOrNew(array $attributes = []): Model
@@ -89,5 +87,10 @@ class BaseTableRepository
     public function delete(Model $instance)
     {
         return $instance->delete();
+    }
+
+    public function getFillable(): array
+    {
+        return $this->createModel()->getFillable();
     }
 }
