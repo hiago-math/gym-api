@@ -10,22 +10,18 @@ use Illuminate\Validation\ValidationException;
 
 class AcademyTrainingController extends BaseController
 {
-    /**
-     * AddressController constructor.
-     * @param AcademyTrainingService $addressService
-     */
-    private AcademyTrainingService $addressService;
+    private AcademyTrainingService $academyTrainingService;
 
-    public function __construct(AcademyTrainingService $addressService)
+    public function __construct(AcademyTrainingService $academyTrainingService)
     {
-        $this->addressService = $addressService;
+        $this->academyTrainingService = $academyTrainingService;
     }
 
     public function storage(AcademyTrainingRequest $addressRequest): JsonResponse
     {
         try {
-            $response = $this->addressService->create($addressRequest->toArray());
-        } catch (ValidationException $exception) {
+            $response = $this->academyTrainingService->create($addressRequest->toArray());
+        } catch (\RuntimeException | ValidationException $exception) {
             AcademyTrainingExceptions::handle($exception->getMessage());
         }
 

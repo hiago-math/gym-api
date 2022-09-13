@@ -34,6 +34,10 @@
             "Channel\\": "routes/channel/",
             "Console\\": "routes/console/",
             "Tests\\": "tests/"
-        }
+        },
+        "classmap": [
+            "database/seeders",
+            "database/factories"
+        ]
     }
 }

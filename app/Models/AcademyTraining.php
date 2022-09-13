@@ -10,7 +10,9 @@ class AcademyTraining extends BaseModel
     protected $fillable = [
         'name',
         'fantasy_name',
-        'cnpj'
+        'cnpj',
+        'uid_address',
+        'uid_status'
     ];
 
     public function phonesAcademy()
