@@ -10,7 +10,7 @@ use Illuminate\Validation\ValidationException;
 use Maatwebsite\Excel\Facades\Excel;
 use Maatwebsite\Excel\HeadingRowImport;
 
-class ExampleImportController extends Controller
+class ExampleImportController extends BaseController
 {
     private ExampleImport $exampleImport;
     private HeadingRowImport $headingRowImport;

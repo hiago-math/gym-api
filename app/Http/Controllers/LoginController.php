@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Domain\Services\LoginService;
 
-class LoginController extends Controller
+class LoginController extends BaseController
 {
     private LoginService $loginService;
 

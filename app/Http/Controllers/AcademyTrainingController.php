@@ -8,7 +8,7 @@ use App\Http\Requests\AcademyTrainingRequest;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Validation\ValidationException;
 
-class AcademyTrainingController extends Controller
+class AcademyTrainingController extends BaseController
 {
     /**
      * AddressController constructor.

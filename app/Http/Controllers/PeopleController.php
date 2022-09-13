@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Domain\Services\PeopleService;
 
-class PeopleController extends Controller
+class PeopleController extends BaseController
 {
     private PeopleService $peopleService;
 

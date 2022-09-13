@@ -8,7 +8,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response as ResponseHttp;
 use Illuminate\Support\Facades\Response;
 
-class FunctionController extends Controller
+class FunctionController extends BaseController
 {
     private FunctionService $functionService;
 

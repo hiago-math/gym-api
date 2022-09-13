@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Domain\Services\EquipmentService;
 
-class EquipmentController extends Controller
+class EquipmentController extends BaseController
 {
     private EquipmentService $equipmentService;
 
