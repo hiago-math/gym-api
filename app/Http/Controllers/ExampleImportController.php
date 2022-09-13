@@ -40,6 +40,6 @@ class ExampleImportController extends Controller
             ]);
         }
 
-        return $this->returnResponse(null, "Arquivo importado com Sucesso");
+        return $this->returnResponse(define('null', null, true), "Arquivo importado com Sucesso");
     }
 }

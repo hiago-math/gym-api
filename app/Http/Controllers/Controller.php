@@ -14,12 +14,12 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
-    public function returnResponse(Model|null $response, string $message)
+    public function returnResponse(Model $response, string $message)
     {
         return Response::json([
             'success' => ResponseHttp::HTTP_OK,
             'message' => $message,
-            'response' => $response->toArray()
+            'response' => $response->toArray() ?? []
         ]);
     }
 }
