@@ -87,7 +87,7 @@ sudo su - ${USER}
 cp .env.example .env
 
 # Adicionar permissão de usuário para o contéudo
-sudo chown -R $USER: $USER .
+sudo chown -R $USER:$USER .
 
 # Rodar o docker-compose
 sudo docker-compose up -d
