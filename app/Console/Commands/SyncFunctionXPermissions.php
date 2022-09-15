@@ -50,6 +50,6 @@ class SyncFunctionXPermissions extends Command
         $this->permissionRepository->createModel()->chunk(100, function ($permissions) use ($function) {
             dispatch((new SyncFunctionXPermissionsJob($function, $permissions)));
         });
-     $this->comment('Função SUPREMA e Permissoes Adicionadas na fila, certifique-se está rodando! (php artisan queue:work)');
+     $this->comment('Fila Dispachada, certifique-se está rodando! (php artisan queue:work)');
     }
 }
