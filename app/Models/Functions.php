@@ -5,7 +5,7 @@ namespace App\Models;
 class Functions extends BaseModel
 {
     protected $primaryKey = "uid_function";
-    protected $table = 'fuctions';
+    protected $table = 'functions';
 
     protected $fillable = [
         'label',
