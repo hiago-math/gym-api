@@ -2,9 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\AcademyTraining;
 use App\Models\Status;
-use App\Models\TypeStatus;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
 
@@ -17,18 +15,38 @@ class StatusSeeder extends Seeder
      */
     public function run()
     {
-        $status = Status::query()
-            ->updateOrCreate([
-                'name' => Str::ucfirst('PRIMEIRO ACESSO'),
-                'label' => Str::lower('PRIMEIRO_ACESSO'),
-                'description' => 'Status para indicar que foi apenas cadastrado'
+        Status::query()
+            ->insert([
+                [
+                    'uid_status' => Str::uuid(),
+                    'name' => 'Primeiro Acesso',
+                    'label' => 'primeiro_acesso',
+                    'description' => 'Status para indicar que foi apenas cadastrado'
+                ],
+                [
+                    'uid_status' => Str::uuid(),
+                    'name' => 'Desativado',
+                    'label' => 'desativado',
+                    'description' => 'Status para indicar que está desativado'
+                ],
+                [
+                    'uid_status' => Str::uuid(),
+                    'name' => 'Aprovado',
+                    'label' => 'aprovado',
+                    'description' => 'Status para indicar que está aprovado'
+                ],
+                [
+                    'uid_status' => Str::uuid(),
+                    'name' => 'Manutenção',
+                    'label' => 'manutencao',
+                    'description' => 'Status para indicar que está em manutenção'
+                ],
+                [
+                    'uid_status' => Str::uuid(),
+                    'name' => 'Bloqueado',
+                    'label' => 'bloqueado',
+                    'description' => 'Status para indicar que está bloqueado'
+                ]
             ]);
-
-        $typeStatus = TypeStatus::query()
-            ->where('type', Str::lower(AcademyTraining::class))
-            ->pluck('uid_type');
-
-        $status->typeStatusAcademy()->sync($typeStatus);
-
     }
 }
