@@ -5,7 +5,6 @@ namespace App\Http\Requests;
 use App\Exceptions\Config\BaseException;
 use App\Exceptions\Config\BuildExceptions;
 use App\Exceptions\DefaultException;
-use GuzzleHttp\Exception\TransferException;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Symfony\Component\HttpFoundation\Response;
